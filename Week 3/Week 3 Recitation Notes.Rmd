@@ -1,5 +1,6 @@
 ---
 title: "Recitation week 3"
+author: "Eric R. Scott"
 output: html_notebook
 ---
 

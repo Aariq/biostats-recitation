@@ -1,5 +1,6 @@
 ---
 title: "Programing functions and plotting with ggplot"
+author: "Eric R. Scott"
 output: html_notebook
 ---
 

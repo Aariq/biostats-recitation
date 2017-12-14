@@ -1,5 +1,6 @@
 ---
 title: "Week 12 - Regression"
+author: "Natalie Kerr"
 output: html_notebook
 ---
 

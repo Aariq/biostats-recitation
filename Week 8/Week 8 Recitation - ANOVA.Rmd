@@ -1,5 +1,6 @@
 ---
 title: 'Recitation Week 8: analysis of variance (ANOVA)'
+author: "Natalie Kerr, Eric R. Scott"
 output:
   html_notebook: default
 ---
@@ -20,11 +21,11 @@ library(ggformula)
 
 Null = whether a female is fed or starved has no effect of their time to mating, 
 
-      H0: µ_fed = µ_starved
+ - H0: µ~fed~ = µ~starved~
       
 Alternative = a starved female will have a different time to mating than a fed female. # could also be less time 
 
-      HA: µ_fed ≠ µ_starved
+ - HA: µ~fed~ ≠ µ~starved~
       
 ## Step 2 - Choose an appropriate statistical test, and justify your choice. And test for its assumptions. 
 

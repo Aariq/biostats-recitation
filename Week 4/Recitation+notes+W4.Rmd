@@ -1,13 +1,12 @@
 ---
 title: "Recitation - Week 4"
+author: "Natalie Kerr"
 output:
-  word_document: default
   html_notebook: default
+  word_document: default
 ---
 
------- 1. Warm up ---------
-
-Exercise 1. 
+# 1. Warm up: Exercise 1. 
 
 1) Download "Lizards.csv" data from Trunk.
 
@@ -60,7 +59,7 @@ hist(killed$HornLength, breaks=bins(killed$HornLength, 5),
 ```
 
 
------ 2. Introduce t.test function ----
+# 2. Introduce t.test function
 
 *x* = for one sample t.test
 
@@ -104,7 +103,7 @@ with(lizard, t.test(HornLength ~ Survival))
 
 ```
 
------ 3. Introduce x-t functions ------
+# 3. Introduce x-t functions
 
 We can use other functions, qt and pt to ask questions about the sampling distribution for T tests. 
 
@@ -133,7 +132,7 @@ qt(0.85, df = 1)
 ```
 
 
--------- Exercise 1. ---------
+## Exercise 1.
 
 Problem: biologists were interested in whether worker size varies significantly among colonies across the landscape. 
   
@@ -198,7 +197,7 @@ arrows(barCenters, sums$CI.upper, barCenters, sums$CI.lower, angle=90, code=3)
 
 ```
 
--------- Exercise 2. ---------
+## Exercise 2. 
 
 Problem: biologists were interested in whether introduced brook trout to affects the survival of chinook salmon. 
 

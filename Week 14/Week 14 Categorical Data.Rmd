@@ -1,5 +1,6 @@
 ---
 title: 'Recitation week 14: Categorical Data Ideas'
+author: "Eric Scott"
 output:
   html_document:
     df_print: paged

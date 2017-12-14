@@ -1,5 +1,6 @@
 ---
 title: 'Recitation Week 7: assumptions, transformation, and non-parametric tests'
+author: "Eric R. Scott"
 output:
   html_notebook: default
   word_document: default

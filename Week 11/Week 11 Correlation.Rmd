@@ -1,5 +1,6 @@
 ---
 title: "Week 11: Correlation"
+author: "Eric R. Scott"
 output: html_notebook
 ---
 

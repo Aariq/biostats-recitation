@@ -1,5 +1,6 @@
 ---
 title: "Recitation Week 1 Notes"
+author: "Eric R. Scott, Natalie Kerr"
 output:
   html_notebook: default
   pdf_document: default
@@ -145,8 +146,6 @@ boxplot(data$speed ~ data$treatment, xlab = "Treatment", ylab = "Speed")
 
 ## In-Class Exercise (Natalie)
  - on slides
-
-
 
 ## Common problems encountered in recitation
 

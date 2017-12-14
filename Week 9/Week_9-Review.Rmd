@@ -1,5 +1,6 @@
 ---
-title: "Recitation Week 9"
+title: "Recitation Week 9: Review"
+author: "Eric R. Scott"
 output:
   html_notebook: default
   word_document: default

@@ -1,5 +1,6 @@
 ---
 title: "Week 2 Recitation Notes"
+author: "Natalie Kerr"
 output:
   html_notebook: default
   pdf_document: default
@@ -20,7 +21,6 @@ e) Show them on trunk that you can download the homework, and use that file.
 ### 2. Warmup (lecture slides)
 
 ```{r}
-
 bee<-read.csv("BeeNectar.csv")
 nrow(bee)
 summary(bee$Nectar)
