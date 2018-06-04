@@ -5,7 +5,7 @@ output:
   html_notebook: default
   pdf_document: default
 ---
-## Welcome to Recitation (Natalie)
+# Welcome to Recitation
 On powerpoint slides:
 
  - Format of class
@@ -15,13 +15,16 @@ On powerpoint slides:
     - ask questions
     - tell us if we need to pause, slow down, repeat ourselves (we haven't been beginners for a long time)
 
-## Orientation to RStudio (Natalie)
+# Orientation to RStudio
 
  - Console
  - Environment
  - Help pane
 
-## Exercises to do directly in console (Natalie)
+# Review of DataCamp
+Students will be assigned the first chapter of Introduction to R on datacamp.  Review some of the important things they learned.  Doublecheck datacamp to make sure these things are relevant.
+
+## R as a calculator
 ```{r}
 #R does math
 5+5
@@ -29,12 +32,12 @@ On powerpoint slides:
 44*15
 10^10
 ```
-Introduce functions with `sqrt()` or `log()`
+## Functions `sqrt()` or `log()`
 ```{r}
 sqrt(45)
 ```
 
-Introduce assignment to objects
+## Assignment to objects
 ```{r}
 x <- 5
 5+x
@@ -48,12 +51,13 @@ x
 x <- c(1, 2, 3, 4, 5, 25)
 ```
 
-What happens if you do math to a vector?
+## Vector math
+Might get rid of this...
 ```{r}
 x * 3
 ```
 
-Demonstrate how commented lines work
+## Commenting your code
 ```{r}
 x
 #x
@@ -64,14 +68,16 @@ Four ways:
 
  - `help(mean)`
  - `?mean`
- - search box in help pane
+ - search box in help pane of RStudio
  - Google (stackexchange results especially)
 ```{r}
 help(mean) # help("function") will retrieve the manual and help file for that function
 ?mean      # ?"function" will do the same as help()
 ```
 
-## R Notebooks (Eric)
+# R Notebooks
+*Consider saving this for week 2.  If you wait on this, you'll have to change how they turn in their homework though.*
+
 We'll go over the anatomy and use of an R notebook in recitation and the rest of the exercises will be done in code chunks of an R notebook.
 
 Things to cover:
@@ -81,91 +87,35 @@ Things to cover:
  - inserting a new chunk
  - knitting to Word doc
 
-## Data Entry (Eric)
-Before uploading data, you have to have all files in the same folder as this notebook for this code to run. 
 
+# Plotting with ggplot2
+## What is ggplot2?
+ggplot2 is a **package**, like an app for your phone.  It adds functionality.  Also like an app, it needs to be installed only once, but loaded everytime you want to use it.  The "gg" stands for Grammar of Graphics (Wilkinson 2005), a theory of data visualization.  It works a little like constructing a sentence in English.
 ```{r}
-read.csv("SpiderAmputation.csv") # uploads your data
-```
-But if you want it to stick around, you need to assign to an object!
-
-```{r}
-data <- read.csv("SpiderAmputation.csv")
-#or call it whatever you want
-data
+#example code?
 ```
 
-Always a good idea to check your data to make sure it loaded correctly
+### Components of the Grammar
+1. `data`: a data-frame containing all the variables you want to map
+2. `geom`: a way of representing variables.  E.g. points, lines, bars, etc.
+3. `aes`: Aesthetic attributes that describe how the variables get mapped to different features of the plot.  For example, x-axis value, y-axis value, point color, point size, and point shape can all me mapped to represent different variables.
+
+### Installing packages
+Use the packages tab in RStudio
+
+### Loading packages
 ```{r}
-head(data) # will call up the first 6 rows of your data frame
-tail(data) # will call up the last 6 rows of your data frame
-data[1:10, ] # data[rows, columns] therefore data[1:10, ] will call up rows 1 to 10, and all columns 
+library(ggplot2)
+library(abd)
 ```
 
-Other ways to check your data
-```{r}
-str(data) # shows what kind of data is in each column (character, integer, etc.). Helpful for spotting data entry errors
-dim(data) # the dimensions of your data frame
-nrow(data) # number of rows
-ncol(data) # number of columns
-length(data[ , 1]) # length of a vector or column in your data frame. You will have to specify the column if it is a data frame.
-```
-You can see the objects you've created in the Environment panel
+## Examples
+Load data from `abd` and make plots from Chapter 2 with live coding.
 
-## Descriptive Stats (Natalie)
-
-```{r}
-summary(data$speed)
-
-mean(data$speed)
-sd(data$speed)
-var(data$speed)
-min(data$speed)
-max(data$speed)
-range(data$speed) # IMPORTANT: in this class, "range" is a single value (min - max)
-
-before<-subset(data, treatment=="before")
-mean(before$speed)
-
-after<-subset(data, treatment=="after")
-mean(after$speed)
-```
-
-## Plotting (Eric)
-Histograms
-```{r}
-#histograms only require specification of an x axis because the y axis is always frequency
-hist(data$speed, xlab = "Speed", main = NULL)
-```
-Boxplots
-```{r}
-boxplot(data$speed, ylab = "Speed")
-#If you want multiple boxplots side-by-side for different treatments, specify an x and y axis using a formula
-boxplot(data$speed ~ data$treatment, xlab = "Treatment", ylab = "Speed")
-```
-
-## In-Class Exercise (Natalie)
- - on slides
-
-## Common problems encountered in recitation
+# Common problems encountered in recitation in 2017
 
 
 1. Remember to save your notebook in the same file that you saved your data. You may need to restart R Studio if you opened up the notebook in a different file
-
-2. Thinking that your new subsetted dataframe is a vector
-
-```{r}
-
-data$after # this does not work since both "data" (containing both after and before treatment) and "after" (containing only after) are both dataframes. there is no "after" vector in "data"
-
-# Instead you should do this:
-
-data$speed
-mean(data$speed)
-
-after$speed
-mean(after$speed)
-```
 
 
 

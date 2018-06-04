@@ -7,6 +7,67 @@ output:
   word_document: default
 ---
 
+Notes from discussion with Sara:
+- Get rid of `seq()`, `sample()`, and `rep()`.  They'll do sampling online later.
+- Switch `rnorm()` to `runif()`.  They don't know the normal distribution yet, but having a random number generator in R could be handy.
+- Do summary stats with dplyr
+- Do some plot types not found in Chapter 2 to review `ggplot2` (e.g. violin plots)
+- Teach reading csvs.  Use `read_csv()` instead of `read.csv()` maybe
+
+# Moved from week 1:
+## Data Entry (Eric)
+Before uploading data, you have to have all files in the same folder as this notebook for this code to run. 
+
+```{r}
+read.csv("SpiderAmputation.csv") # uploads your data
+```
+But if you want it to stick around, you need to assign to an object!
+
+```{r}
+data <- read.csv("SpiderAmputation.csv")
+#or call it whatever you want
+data
+```
+
+Always a good idea to check your data to make sure it loaded correctly
+```{r}
+head(data) # will call up the first 6 rows of your data frame
+tail(data) # will call up the last 6 rows of your data frame
+data[1:10, ] # data[rows, columns] therefore data[1:10, ] will call up rows 1 to 10, and all columns 
+```
+
+Other ways to check your data
+```{r}
+str(data) # shows what kind of data is in each column (character, integer, etc.). Helpful for spotting data entry errors
+dim(data) # the dimensions of your data frame
+nrow(data) # number of rows
+ncol(data) # number of columns
+length(data[ , 1]) # length of a vector or column in your data frame. You will have to specify the column if it is a data frame.
+```
+You can see the objects you've created in the Environment panel
+
+## Descriptive Stats (Natalie)
+
+```{r}
+summary(data$speed)
+
+mean(data$speed)
+sd(data$speed)
+var(data$speed)
+min(data$speed)
+max(data$speed)
+range(data$speed) # IMPORTANT: in this class, "range" is a single value (min - max)
+
+before<-subset(data, treatment=="before")
+mean(before$speed)
+
+after<-subset(data, treatment=="after")
+mean(after$speed)
+```
+
+
+
+
 
 ### 1. Notebook saving
 
@@ -214,6 +275,6 @@ Lecture speak                R speak
 Numerical, continuous        numeric
 Numerical, discrete          integer 
 Categorical, nominal         factor (or character)
-Categorical, ordinal         factor (you may need to convert as an ordered factor using "ordered" function)
+Categorical, ordinal         factor (with `levels` specified)
 
 It is better to leave all categorical vectors as factors for statistical tests, e.g. ANOVA.  
