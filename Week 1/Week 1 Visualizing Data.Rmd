@@ -1,0 +1,121 @@
+---
+title: "Recitation Week 1 Notes"
+author: "Eric R. Scott, Natalie Kerr"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+# Welcome to Recitation
+On powerpoint slides:
+
+ - Format of class
+ - Expectations
+    - **collaborate** (help others, ask others for help)
+    - be respectful to eachother
+    - ask questions
+    - tell us if we need to pause, slow down, repeat ourselves (we haven't been beginners for a long time)
+
+# Orientation to RStudio
+
+ - Console
+ - Environment
+ - Help pane
+
+# Review of DataCamp
+Students will be assigned the first chapter of [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r) on datacamp.  Review some of the important things they learned.  Doublecheck datacamp to make sure these things are relevant.
+
+## R as a calculator
+```{r}
+#R does math
+5+5
+12/2
+44*15
+10^10
+```
+## Functions `sqrt()` or `log()`
+```{r}
+sqrt(45)
+```
+
+## Assignment to objects
+```{r}
+x <- 5
+5+x
+x^x
+sqrt(x)
+
+x <- "biostats"
+x
+
+#vectors
+x <- c(1, 2, 3, 4, 5, 25)
+```
+
+## Vector math
+Might get rid of this...
+```{r}
+x * 3
+```
+
+## Commenting your code
+```{r}
+x
+#x
+```
+
+## Getting Help
+Four ways:
+
+ - `help(mean)`
+ - `?mean`
+ - search box in help pane of RStudio
+ - Google (stackexchange results especially)
+```{r}
+help(mean) # help("function") will retrieve the manual and help file for that function
+?mean      # ?"function" will do the same as help()
+```
+
+# R Notebooks
+*Consider saving this for week 2.  If you wait on this, you'll have to change how they turn in their homework though.*
+
+We'll go over the anatomy and use of an R notebook in recitation and the rest of the exercises will be done in code chunks of an R notebook.
+
+Things to cover:
+ - header and how to edit title and author names
+ - text vs. code chunks
+ - running code in a chunk (run button/shortcut or "play" button)
+ - inserting a new chunk
+ - knitting to Word doc
+
+
+# Plotting with ggplot2
+## What is ggplot2?
+ggplot2 is a **package**, like an app for your phone.  It adds functionality.  Also like an app, it needs to be installed only once, but loaded everytime you want to use it.  The "gg" stands for Grammar of Graphics (Wilkinson 2005), a theory of data visualization.  It works a little like constructing a sentence in English.
+```{r}
+#example code?
+```
+
+### Components of the Grammar
+1. `data`: a data-frame containing all the variables you want to map
+2. `geom`: a way of representing variables.  E.g. points, lines, bars, etc.
+3. `aes`: Aesthetic attributes that describe how the variables get mapped to different features of the plot.  For example, x-axis value, y-axis value, point color, point size, and point shape can all me mapped to represent different variables.
+
+### Installing packages
+Use the packages tab in RStudio
+
+### Loading packages
+```{r}
+library(ggplot2)
+library(abd)
+```
+
+## Examples
+Load data from `abd` and make plots from Chapter 2 with live coding.
+
+# Common problems encountered in recitation in 2017
+
+
+1. Remember to save your notebook in the same file that you saved your data. You may need to restart R Studio if you opened up the notebook in a different file
+
+
+
