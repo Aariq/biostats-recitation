@@ -32,15 +32,10 @@ Expectations
 
 Why R?
 ========================================================
-For this course:
-- Made for and by data scientists and statisticians
-- Used by many biologists
-- Friendly community
-- Free, open source
-
-Beyond this course:
-- Reproducible research (your research!)
-- Jobs
+- Open source (free!)
+- Vibrant, helpful, friendly community online
+- Reproducibility of code vs. point-and-click
+- Used in many data-science, statistics, and science jobs
 
 What is R? What is R Studio?
 ========================================================
@@ -139,7 +134,7 @@ Social Media:
 Getting Help
 ==================================
 ## Come to office hours!
-- All of the TAs for this course know R
+- *All* of the TAs for this course know R and use it for their work
 
 Packages
 ==================================
@@ -153,7 +148,9 @@ Packages
 Install Packages
 ==================================
 - Install `abd` and `ggplot2` now
+    + Packages only need to be installed **once**
 - Load packages with `library(package_name)`
+    + Packages need to be loaded **once per R session**
 
 Visualize Data
 ==================================
