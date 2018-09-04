@@ -1,18 +1,18 @@
 ---
 title: "Welcome to Biostats Recitation!"
-author: "Eric R. Scott, Natalie Kerr"
+author: "Eric R. Scott, Avalon Owens"
 output:
-  pdf_document: default
   ioslides_presentation:
     css: custom.css
+  pdf_document: default
 ---
 
 ## Information
 
 Office Hours:
 
-- Avalon:
-- Eric:
+- Avalon: **Friday 1:30--2:30 pm** in SEC 300H8
+- Eric: **Monday 3--4 pm** in SEC 300H8
 
 ## Objectives
 
