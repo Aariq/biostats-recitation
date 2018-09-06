@@ -16,10 +16,10 @@ Office Hours:
 
 ## Objectives
 
-- Build a toolset to work with, explore, visualize, and analyze data
-- Become familiar with resources to help learn more on your own
-- Apply concepts learned in lecture to new situations
-- Get the tools you need to work through homework assignments
+- Learn to work with, explore, visualize, and analyze data
+- Learn tools you'll need to complete homework assignments
+- Practice lecture concepts
+- Learn how to find resources to get help with R
 
 ## Expectations
 
@@ -40,7 +40,7 @@ Office Hours:
 - Open source (free!)
 - Vibrant, helpful, friendly community online
 - Reproducibility of code vs. point-and-click
-- Used in many data-science, statistics, and science jobs
+- Used in biology research, statistics, data science, and other STEM careers
 
 ## What is R? What is R Studio?
 
@@ -80,15 +80,12 @@ Launch RStudio            |  **NOT** R
 <img src="figs/RStudio-Ball.png" alt="Drawing" style="height: 200px;"/>  |  <img src="figs/R_logo.svg.png" alt="Drawing" style="height: 200px;"/>
 
 
-
 # Review of [DataCamp](https://www.datacamp.com/courses/free-introduction-to-r) Lesson
 
 ## R as a calculator
 
 ```{r results='hold'}
 5+5
-12/2
-44*15
 10^10
 ```
 
@@ -123,6 +120,182 @@ x
 mean(x) #this takes the mean of 'x'
 ```
 
+# Extending R
+
+## Packages
+
+- Packages extend the capabilities of R
+- Think of them like apps for a smartphone
+- For example, the `abd` package contains all the datasets used in your textbook
+- We will use `abd`, `ggplot2`, and `dplyr` heavily in this course
+
+```{r echo=FALSE, out.width="20%"}
+knitr::include_graphics(c("figs/dplyr.png", "figs/ggplot2.png"))
+```
+
+
+## Install Packages
+- Install R packages using the "Packages" tab in RStudio
+- Install `abd` and `ggplot2` now
+    + Packages only need to be installed **once**
+- Load packages with `library(<<package name>>)`
+    + Packages need to be loaded **once per R session**
+
+# Exploring Data
+
+## Example Dataset
+
+- Today we'll be using a built-in dataset called `iris`
+- What is the `iris` dataset?
+    + (hint: use `help()`)
+- Try `head(iris)`.
+    + What does the `head()` function do?
+
+## Iris Data
+
+```{r eval=FALSE}
+head(iris)
+```
+
+```{r echo=FALSE}
+library(knitr)
+kable(head(iris))
+```
+
+## Visualize Data
+
+```{r echo=FALSE}
+library(ggplot2)
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, size = Petal.Length)) +
+  geom_point()
+```
+
+## The Grammar of Graphics
+
+`ggplot2` is based on a data visualization framework called the "grammar of graphics"
+The short version is:
+
+> A statistical graphic is a mapping of **data** variables to **aes**thetic attributes of **geom**etric objects.
+
+All plots require three parts:
+
+1. `data`, which must be a data frame
+2. A `geom`, which describes how the data are to be plotted (points, lines, boxplots, etc.)
+3. `aes`, which describes the aesthetic mapping of variables to representation by the `geom`
+
+
+## Aesthetic Mapping
+
+```{r echo=FALSE, fig.width=7, fig.height = 3}
+library(ggplot2)
+
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, size = Petal.Length)) +
+  geom_point()
+```
+
+- What variable is mapped to `x`?
+- What variable is mapped to `y`?
+- What variable is mapped to `color`?
+- What variable is mapped to `size`?
+
+## ggplot2 Code
+
+```{r echo=TRUE, fig.width=8, fig.height = 4, eval=FALSE}
+library(ggplot2)
+
+ggplot(data = iris, aes(x = Sepal.Length,
+                        y = Sepal.Width,
+                        color = Species,
+                        size = Petal.Length)) +
+  geom_point()
+```
+
+- Find the `data`, the aesthetic mappings, and the `geom`
+- Try changing them!
+
+## Histogram in ggplot2
+
+- Histograms only require one aesthetic, the x-axis.  The y-axis gets calculated by `geom_histogram()`
+
+```{r fig.height=3}
+p <- ggplot(data = iris, aes(x = Sepal.Length)) +
+  geom_histogram(bins = 10)
+p
+```
+
+## Adding axis labels
+
+```{r fig.height=3}
+p + labs(x = "Sepal Length (cm)", y = "Frequency")
+```
+
+## Faceting
+
+- For separate histograms for each species use `facet_wrap()`
+- Must put variable name in quotes
+
+```{r fig.height=3}
+p + labs(x = "Sepal Length (cm)", y = "Frequency") + 
+  facet_wrap("Species")
+```
+
+## Customizing color
+
+- Instead of mapping a variable to color, let's say you want to change the color of *all* of your points/bars/lines, etc.
+- Simply put `color = ...` outside of the `aes()` function, inside the `geom_` function.
+
+```{r fig.height=3, fig.width=7}
+ggplot(data = iris, aes(x = Sepal.Length)) +
+  geom_histogram(bins = 10, color = "red")
+```
+
+## Customizing other aesthetics
+
+- You can use this same strategy to change things like `fill`, `alpha`(transparency), `size` (of points), etc.
+- Run `colors()` to get a list of all the named colors R knows.
+
+```{r fig.height=3, fig.width=7}
+ggplot(data = iris, aes(x = Sepal.Length)) +
+  geom_histogram(bins = 10, color = "darkorchid2", fill = "aquamarine4")
+```
+
+# R Notebooks
+
+## Make an R Notebook
+
+- Start a new notebook with `File > New File > R Notebook`
+- Take a look
+- Click "Preview"
+
+## What is an R Notebook?
+
+- R Notebooks are a file type that can be opened in R Studio
+- They mix "prose" (regular typing), code, and the output from code
+- They get "knit" into beautifully formatted pdf, html, or Word documents
+
+```{r echo=FALSE, out.width="60%"}
+include_graphics("figs/knitting.png")
+```
+
+- **Your first homework uses an R Notebook document**
+
+## R Notebook Anatomy
+
+- YAML header
+    + **Don't touch for now!**
+- Code chunks
+    + Grey background
+    + Bounded by three backticks (don't edit these)
+    + Edit code inside and type your own code to complete homework
+    + You can test code by clicking the "play" button in a chunk
+- "Prose"
+    + Not evaluated as R code, just writing
+    + Type your answers to questions in the white spaces
+    
+## "Knitting" an R Notebook
+
+When you are finished with your homework, click the "knit" button and it should output a Word doc!  Print, write your name, and hand it in.
+
 # Getting Help With R
 
 ## `help()` / `?`
@@ -152,188 +325,5 @@ knitr::include_graphics("figs/helptab.png")
 ## Come to office hours!
 
 - *All* of the TAs for this course know R and use it for their work
-
-# Extending R
-
-## Packages
-
-- Packages extend the capabilities of R
-- Think of them like apps for a smartphone
-- For example, the `abd` package contains all the datasets used in your textbook
-- We will use `abd`, `ggplot2`, and `dplyr` heavily in this course
-- Install R packages using the "Packages" tab in RStudio
-
-## Install Packages
-
-- Install `abd` and `ggplot2` now
-    + Packages only need to be installed **once**
-- Load packages with `library(package_name)`
-    + Packages need to be loaded **once per R session**
-
-# Exploring Data
-
-## Example Dataset
-
-- Today we'll be using a built-in dataset called `iris`
-- What is the `iris` dataset?
-    + (hint: use `help()`)
-- Try `head(iris)`.
-    + What does the `head()` function do?
-
-## Iris Data
-
-```{r eval=FALSE}
-head(iris)
-```
-
-```{r echo=FALSE}
-library(knitr)
-kable(head(iris))
-```
-
-
-## Visualize Data
-
-```{r echo=FALSE}
-library(ggplot2)
-ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, size = Petal.Length)) +
-  geom_point()
-```
-
-## The Grammar of Graphics
-
-`ggplot2` is based on a data visualization framework called the "grammar of graphics"
-The short version is:
-
-> A statistical graphic is a mapping of **data** variables to **aes**thetic attributes of **geom**etric objects.
-
-All plots require three parts:
-
-1. `data`, which must be a data frame
-2. A `geom`, which describes how the data are to be plotted (points, lines, boxplots, etc.)
-3. `aes`, which describes the aesthetic mapping of variables to representation by the `geom`
-
-
-## Aesthetic Mapping
-
-```{r echo=FALSE, fig.width=7, fig.height = 3}
-library(ggplot2)
-
-ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, size = Petal.Length)) +
-  geom_point()
-```
-
-- What variable is mapped to `x`?
-- What variable is mapped to `y`?
-- What variable is mapped to `color`?
-- What variable is mapped to `size`?
-
-## ggplot2 Code
-
-```{r echo=TRUE, fig.width=8, fig.height = 4, eval=FALSE}
-library(ggplot2)
-
-ggplot(iris, aes(x = Sepal.Length,
-                 y = Sepal.Width,
-                 color = Species,
-                 size = Petal.Length)) +
-  geom_point()
-```
-
-- Find the `data`, the aesthetic mappings, and the `geom`
-- Try changing them!
-
-## Histogram in ggplot2
-
-- Histograms only require one aesthetic, the x-axis.  The y-axis gets calculated by `geom_histogram()`
-
-```{r fig.height=3}
-p <- ggplot(iris, aes(x = Sepal.Length)) +
-  geom_histogram(bins = 10)
-p
-```
-
-## Adding axis labels
-
-```{r fig.height=3}
-p + labs(x = "Sepal Length (cm)", y = "Frequency")
-```
-
-## Faceting
-
-- For separate histograms for each species use `facet_wrap()`
-- Must put variable name in quotes
-
-```{r fig.height=3}
-p + labs(x = "Sepal Length (cm)", y = "Frequency") + 
-  facet_wrap("Species")
-```
-
-## Summarizing data
-- We're going to use the `dplyr` package for sumarizing data
-
-`summarise(<<data frame>>, <<new variable>> = <<summary function>>)`
-
-```{r message=FALSE, warning=FALSE}
-library(dplyr)
-summarise(iris, mean_sep.len = mean(Sepal.Length))
-```
-
-## Making a summary table
-```{r}
-summarise(iris,
-          mean = mean(Sepal.Length),
-          median = median(Sepal.Length),
-          range = max(Sepal.Length) - min(Sepal.Length),
-          variance = var(Sepal.Length))
-```
-## Summarizing within groups
-- Sometimes it's useful to get summary statistics for groups separately, just like the faceted histograms we made before.
-- use `group_by()` to add *invisible* grouping variable
-
-```{r}
-iris_grouped <- group_by(iris, Species)
-summarise(iris_grouped,
-          mean = mean(Sepal.Length),
-          median = median(Sepal.Length),
-          range = max(Sepal.Length) - min(Sepal.Length),
-          variance = var(Sepal.Length))
-```
-
-## Week 1 Code Cheatsheet
-
-function|purpose|example
---------|-------|-------
-`help()`|get help on how to use a function| `help(geom_point)`
-`library()`|load an already installed package|`library(ggplot2)`
-`ggplot()`|set up a ggplot.  Data and aesthetic mappings go in this function|
-`geom_*()`|Use `geom_*` functions to map aesthetics to geometry| `ggplot(iris, aes(x = Species, y = Sepal.Width)) + geom_boxplot()`
-
-## R Notebooks
-
-Your first homework uses an R Notebook document.  Today, you'll get a very brief orientation so you can complete the homework, but we'll go more into depth in the future.
-
-## Make an R Notebook
-
-- Start a new notebook with `File > New File > R Notebook`
-- Take a look
-- Click "Preview"
-
-## R Notebook Anatomy
-
-- YAML header
-    + **Don't touch for now!**
-- Code chunks
-    + Grey background
-    + Bounded by three backticks (don't edit these)
-    + Edit code inside and type your own code to complete homework
-    + You can test code by clicking the "play" button in a chunk
-- "Prose"
-    + Not evaluated as R code, just writing
-    + Type your answers to questions in the white spaces
-    
-## "Knitting" an R Notebook
-
-When you are finished with your homework, click the "knit" button and it should output a Word doc!  Print, write your name, and hand it in.
 
 

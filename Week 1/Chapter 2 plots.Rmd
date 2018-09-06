@@ -116,7 +116,7 @@ Fancier version:
 ggplot(birdAbundanceData, aes(x = abundance)) +
   geom_histogram(binwidth = 50, fill = "firebrick") +
   labs(x = "Abundance (No. Individuals)",
-       y = "Frequency (No. Species") +
+       y = "Frequency (No. Species)") +
   theme_bw()
 ```
 

@@ -1,0 +1,109 @@
+---
+title: "Sampling and Summarizing Data"
+author: "Eric R. Scott, Avalon Owens"
+output:
+  ioslides_presentation:
+  pdf_document: default
+---
+
+## Overview
+- Summarizing data by calculating summary statistics with the `dplyr` package
+    + `summarize()`, `group_by()`, `mean()`, `median()`, `var()`, `sd()`, `min()`, `max()`, `round()`
+- More plots with `ggplot2` (box plots, violin plots, jitter plots, combining plots)
+- Sampling with R (`c()`, `rep()`, and `sample()`)
+
+
+# Coding tip #1
+
+## Named and unnamed arguments
+- So far, we've been using explicitly named arguments for all the functions
+    + E.g: `ggplot(`**`data = iris,`**` aes(x = Sepal.Length, y = Sepal.Width))`
+- You don't have to name them (the `data = ` part) if you supply them in the right order.
+    + `ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width))` works just fine.
+    + To figure out the right order, check the example in the help file.
+    
+
+## Summarizing data
+- We're going to use the `dplyr` package for summarizing data
+
+`summarise(<<data frame>>, <<new variable>> = <<summary function>>)`
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+summarize(iris, mean_sep.len = mean(Sepal.Length))
+```
+
+## Making a summary table
+
+```{r}
+summarise(iris,
+          mean = mean(Sepal.Length),
+          median = median(Sepal.Length),
+          range = max(Sepal.Length) - min(Sepal.Length),
+          variance = var(Sepal.Length))
+```
+
+## Summarizing within groups
+- Sometimes it's useful to get summary statistics for groups separately, just like the faceted histograms we made before.
+- use `group_by()` to add *invisible* grouping variable
+
+```{r}
+iris_grouped <- group_by(iris, Species)
+
+summarise(iris_grouped,
+          mean = mean(Sepal.Length),
+          median = median(Sepal.Length),
+          range = max(Sepal.Length) - min(Sepal.Length),
+          variance = var(Sepal.Length))
+```
+
+# Coding tip #2
+
+## The "pipe" ( %>% )
+
+- Used in `dplyr` and many other Tidyverse packages
+- Keyboard shortcut: command/control (macOS/Windows) + shift + m
+- Allows you to "chain" functions together
+
+```{r}
+iris %>%
+  group_by(Species) %>%
+  summarize(mean = mean(Sepal.Length))
+```
+
+## Readable code
+
+- Using the pipe makes your code more readable (to humans!)
+
+```{r}
+iris %>%
+  group_by(Species) %>%
+  summarize(mean = mean(Sepal.Length))
+```
+
+"Take the iris dataset, group it by Species, then summarize it by taking the mean of Sepal Length for each Species"
+
+## Under the hood of `%>%`
+
+- What it actually does is put whatever is on it's left into the first argument of the function on it's right
+```{r eval = FALSE}
+iris %>% group_by(Species)
+# is the same as
+group_by(iris, Species)
+```
+- It only works with functions that have data as their first argument (all Tidy verse functions, not all base R functions)
+
+
+## Practice
+- Make this code more readable using ` %>% `
+```{r eval=FALSE}
+iris_grouped <- group_by(iris, Species)
+
+summarize(iris_grouped,
+          mean = mean(Sepal.Length),
+          median = median(Sepal.Length),
+          range = max(Sepal.Length) - min(Sepal.Length),
+          variance = var(Sepal.Length))
+```
+
+
